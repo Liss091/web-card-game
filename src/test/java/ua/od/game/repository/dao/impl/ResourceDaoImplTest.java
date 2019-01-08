@@ -3,12 +3,13 @@ package ua.od.game.repository.dao.impl;
 import org.junit.Before;
 import org.junit.Test;
 import ua.od.game.model.ResourceEntity;
+import ua.od.game.repository.dao.DbTest;
 
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class ResourceDaoImplTest {
+public class ResourceDaoImplTest extends DbTest {
 
     ResourceDaoImpl resourceDao;
 
