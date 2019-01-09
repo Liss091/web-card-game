@@ -25,14 +25,6 @@ public class ResourceDaoImpl implements ResourceDao {
                     setDefaultNumber(resourceResultSet.getInt("default_number"));
                 }});
             }
-
-            for (int i = 0; i < resources.size(); i++) {
-                System.out.print(resources.get(i).getId() + " ");
-                System.out.print(resources.get(i).getName() + " ");
-                System.out.print(resources.get(i).getDescription()+ " ");
-                System.out.print(resources.get(i).getDefaultNumber()+ " ");
-            }
-
             return resources;
         });
 
