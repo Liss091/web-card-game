@@ -13,10 +13,10 @@ import java.util.List;
 public class BuildingDaoImpl implements BuildingDao {
 
     private final String GET_BUILDING_LIST_QUERY = "SELECT * FROM Building";
-    private final String GET_RES_SET_LIST_FOR_BUILDINGS_QUERY = "SELECT * FROM resource_set rs " +
+    private final String GET_RES_SET_LIST_FOR_BUILDINGS_QUERY = "SELECT * FROM Resource_Set rs " +
                             "WHERE set_id IN (" +
-                            "SELECT resource_set_id FROM building b " +
-                            "INNER JOIN resource_set rs " +
+                            "SELECT resource_set_id FROM Building b " +
+                            "INNER JOIN Resource_Set rs " +
                             "ON b.resource_set_id = rs.set_id);";
 
     @Override
@@ -57,14 +57,14 @@ public class BuildingDaoImpl implements BuildingDao {
     }
 
     // Getting resource_sets for exact building
-    protected List<ResourceSetEntity> getAllBuildingResourceSetList(int resource_set_id, List<ResourceSetEntity> rsList) {
-        List<ResourceSetEntity> b_rsList = new ArrayList<>();
+    protected List<ResourceSetEntity> getAllBuildingResourceSetList(int resourceSetId, List<ResourceSetEntity> rsList) {
+        List<ResourceSetEntity> bRsList = new ArrayList<>();
         for (ResourceSetEntity rsEntity : rsList) {
-            if (rsEntity.getSetId().equals(resource_set_id)) {
-                b_rsList.add(rsEntity);
+            if (rsEntity.getSetId().equals(resourceSetId)) {
+                bRsList.add(rsEntity);
             }
         }
-        return b_rsList;
+        return bRsList;
     }
 
 }
