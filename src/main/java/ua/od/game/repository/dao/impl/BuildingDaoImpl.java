@@ -40,7 +40,7 @@ public class BuildingDaoImpl implements BuildingDao {
     }
 
     // Getting all resource_sets that are used for buildings
-    private List<ResourceSetEntity> getAllResourceSet() {
+    protected List<ResourceSetEntity> getAllResourceSet() {
         return SqlHelper.prepareStatement(GET_RES_SET_LIST_FOR_BUILDINGS_QUERY, statement -> {
             ResultSet rsResultSet = statement.executeQuery();
             List<ResourceSetEntity> rsList = new ArrayList<>();
@@ -57,7 +57,7 @@ public class BuildingDaoImpl implements BuildingDao {
     }
 
     // Getting resource_sets for exact building
-    private List<ResourceSetEntity> getAllBuildingResourceSetList(int resource_set_id, List<ResourceSetEntity> rsList) {
+    protected List<ResourceSetEntity> getAllBuildingResourceSetList(int resource_set_id, List<ResourceSetEntity> rsList) {
         List<ResourceSetEntity> b_rsList = new ArrayList<>();
         for (ResourceSetEntity rsEntity : rsList) {
             if (rsEntity.getSetId().equals(resource_set_id)) {
