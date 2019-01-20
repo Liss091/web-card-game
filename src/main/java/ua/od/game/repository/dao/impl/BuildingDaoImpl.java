@@ -13,11 +13,11 @@ import java.util.List;
 public class BuildingDaoImpl implements BuildingDao {
 
     private final String GET_BUILDING_LIST_QUERY = "SELECT * FROM Building";
-    private final String GET_RES_SET_LIST_FOR_BUILDINGS_QUERY = "select * from resource_set " +
-                            "where set_id in (" +
-                            "select resource_set_id from building " +
-                            "inner join resource_set " +
-                            "on building.resource_set_id = resource_set.set_id);";
+    private final String GET_RES_SET_LIST_FOR_BUILDINGS_QUERY = "SELECT * FROM resource_set rs " +
+                            "WHERE set_id IN (" +
+                            "SELECT resource_set_id FROM building b " +
+                            "INNER JOIN resource_set rs " +
+                            "ON b.resource_set_id = rs.set_id);";
 
     @Override
     public List<BuildingEntity> getAllBuildingList() {
@@ -31,7 +31,7 @@ public class BuildingDaoImpl implements BuildingDao {
                     setName(buildingResSet.getString("name"));
                     setDescription(buildingResSet.getString("description"));
                     setDefaultNumber(buildingResSet.getInt("default_number"));
-                    setResourceSetList(getAll_Building_ResourceSetList(
+                    setResourceSetList(getAllBuildingResourceSetList(
                             buildingResSet.getInt("resource_set_id"), rsList));
                 }});
             }
@@ -40,7 +40,7 @@ public class BuildingDaoImpl implements BuildingDao {
     }
 
     // Getting all resource_sets that are used for buildings
-    public List<ResourceSetEntity> getAllResourceSet() {
+    private List<ResourceSetEntity> getAllResourceSet() {
         return SqlHelper.prepareStatement(GET_RES_SET_LIST_FOR_BUILDINGS_QUERY, statement -> {
             ResultSet rsResultSet = statement.executeQuery();
             List<ResourceSetEntity> rsList = new ArrayList<>();
@@ -57,7 +57,7 @@ public class BuildingDaoImpl implements BuildingDao {
     }
 
     // Getting resource_sets for exact building
-    public List<ResourceSetEntity> getAll_Building_ResourceSetList(int resource_set_id, List<ResourceSetEntity> rsList) {
+    private List<ResourceSetEntity> getAllBuildingResourceSetList(int resource_set_id, List<ResourceSetEntity> rsList) {
         List<ResourceSetEntity> b_rsList = new ArrayList<>();
         for (ResourceSetEntity rsEntity : rsList) {
             if (rsEntity.getSetId().equals(resource_set_id)) {
