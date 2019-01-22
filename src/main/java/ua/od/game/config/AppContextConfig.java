@@ -1,25 +1,11 @@
 package ua.od.game.config;
 
-import ua.od.game.controller.AccountAchievementController;
-import ua.od.game.controller.AccountRoomController;
-import ua.od.game.controller.RoomController;
-import ua.od.game.controller.UserController;
-import ua.od.game.controller.impl.AccountAchievementControllerImpl;
-import ua.od.game.controller.impl.AccountRoomControllerImpl;
-import ua.od.game.controller.impl.RoomControllerImpl;
-import ua.od.game.controller.impl.UserControllerImpl;
-import ua.od.game.repository.dao.AccountAchievementDao;
-import ua.od.game.repository.dao.RoomDao;
-import ua.od.game.repository.dao.UserDao;
-import ua.od.game.repository.dao.impl.AccountAchievementDaoImpl;
-import ua.od.game.repository.dao.impl.RoomDaoImpl;
-import ua.od.game.repository.dao.impl.UserDaoImpl;
-import ua.od.game.service.AccountAchievementService;
-import ua.od.game.service.RoomService;
-import ua.od.game.service.UserService;
-import ua.od.game.service.impl.AccountAchievementServiceImpl;
-import ua.od.game.service.impl.RoomServiceImpl;
-import ua.od.game.service.impl.UserServiceImpl;
+import ua.od.game.controller.*;
+import ua.od.game.controller.impl.*;
+import ua.od.game.repository.dao.*;
+import ua.od.game.repository.dao.impl.*;
+import ua.od.game.service.*;
+import ua.od.game.service.impl.*;
 
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Request;
@@ -107,6 +93,14 @@ public class AppContextConfig {
                     bindAsContract(AccountAchievementDaoImpl.class).to(AccountAchievementDao.class);
                     bindAsContract(AccountAchievementServiceImpl.class).to(AccountAchievementService.class);
                     bindAsContract(AccountAchievementControllerImpl.class).to(AccountAchievementController.class);
+
+                    bindAsContract(ResourceDaoImpl.class).to(ResourceDao.class);
+                    bindAsContract(ResourceServiceImpl.class).to(ResourceService.class);
+                    bindAsContract(ResourceControllerImpl.class).to(ResourceController.class);
+
+                    bindAsContract(BuildingDaoImpl.class).to(BuildingDao.class);
+                    bindAsContract(BuildingServiceImpl.class).to(BuildingService.class);
+                    bindAsContract(BuildingControllerImpl.class).to(BuildingController.class);
                 }
             });
         }};
