@@ -7,6 +7,15 @@ import ua.od.game.repository.dao.impl.*;
 import ua.od.game.service.*;
 import ua.od.game.service.impl.*;
 
+import ua.od.game.controller.AccountAchievementController;
+import ua.od.game.controller.AccountRoomController;
+import ua.od.game.controller.RoomController;
+import ua.od.game.controller.UserController;
+import ua.od.game.controller.impl.AccountAchievementControllerImpl;
+import ua.od.game.controller.impl.AccountRoomControllerImpl;
+import ua.od.game.controller.impl.RoomControllerImpl;
+import ua.od.game.controller.impl.UserControllerImpl;
+
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.HandlerList;
@@ -93,6 +102,10 @@ public class AppContextConfig {
                     bindAsContract(AccountAchievementDaoImpl.class).to(AccountAchievementDao.class);
                     bindAsContract(AccountAchievementServiceImpl.class).to(AccountAchievementService.class);
                     bindAsContract(AccountAchievementControllerImpl.class).to(AccountAchievementController.class);
+
+                    bindAsContract(AchievementDaoImpl.class).to(AchievementDao.class);
+                    bindAsContract(AchievementServiceImpl.class).to(AchievementService.class);
+                    bindAsContract(AchievementControllerImpl.class).to(AchievementController.class);
 
                     bindAsContract(ResourceDaoImpl.class).to(ResourceDao.class);
                     bindAsContract(ResourceServiceImpl.class).to(ResourceService.class);
