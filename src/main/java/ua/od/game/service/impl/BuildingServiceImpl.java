@@ -1,6 +1,8 @@
 package ua.od.game.service.impl;
 
 import ua.od.game.dto.BuildingDto;
+import ua.od.game.dto.ResourceSetDto;
+import ua.od.game.model.BuildingEntity;
 import ua.od.game.repository.dao.BuildingDao;
 import ua.od.game.service.BuildingService;
 
@@ -21,7 +23,19 @@ public class BuildingServiceImpl implements BuildingService {
             setName(buildingEntity.getName());
             setDescription(buildingEntity.getDescription());
             setDefaultNumber(buildingEntity.getDefaultNumber());
+            setResourceSetList(getRSList(buildingEntity));
         }}));
         return buildings;
+    }
+
+    private List<ResourceSetDto> getRSList(BuildingEntity buildingEntity) {
+        List<ResourceSetDto> rsList = new ArrayList<>();
+        buildingEntity.getResourceSetList().forEach(resourceSetEntity -> rsList.add(new ResourceSetDto() {{
+            setId(resourceSetEntity.getId());
+            setSetId(resourceSetEntity.getSetId());
+            setResourceId(resourceSetEntity.getResourceId());
+            setAmount(resourceSetEntity.getAmount());
+        }}));
+        return rsList;
     }
 }
