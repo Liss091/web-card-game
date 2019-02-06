@@ -14,9 +14,8 @@ public class AccountUpgradeDaoImpl implements AccountUpgradeDao {
 
     @Override
     public Boolean clearAccountUpgradeList(Integer accountId) {
-        return SqlHelper.prepareStatement(CLEAR_ACCOUNT_UPGRADE + accountId + ";",statement->{
-            statement.execute();
-            return true;
+        return SqlHelper.prepareStatement(CLEAR_ACCOUNT_UPGRADE + accountId + ";", statement -> {
+            return statement.execute();
         });
     }
 
