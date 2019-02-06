@@ -23,7 +23,7 @@ public class AccountUpgradeDaoImplTest extends DbTest {
 
     @Test
     public void clearAccountUpgradeList() {
-        Assert.assertTrue(accountUpgradeDao.clearAccountUpgradeList(1)g);
+        Assert.assertTrue(accountUpgradeDao.clearAccountUpgradeList(1));
         accountUpgradeDao.getAccountUpgradeList(1).forEach(System.out::println);
     }
 
